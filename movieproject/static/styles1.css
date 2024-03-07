@@ -1,0 +1,105 @@
+/* styles.css */
+
+/* Reset some default styles */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+h3 a {
+    color: #000; /* Black color */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  h3 a:hover {
+    color: #f606aa; /* Black color on hover */
+    text-decoration: none; /* Add underline on hover */
+  }
+
+/* Header Styles */
+header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Navigation Styles */
+nav {
+    background-color: #f6068e; /* Pink background color */
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+nav a:hover {
+    background-color: #e50a8a;
+    color:#000;
+    text-decoration: none;
+}
+
+/* Content Styles */
+#content {
+    padding: 20px;
+}
+/* Add this to your existing CSS file */
+.edit-link, .delete-link, .add-review-link {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  .edit-link {
+    background-color: rgb(237, 110, 19);
+  }
+  
+  .delete-link {
+    background-color: rgb(228, 7, 7);
+  }
+  
+  .add-review-link {
+    background-color: rgb(3, 165, 9);
+  }
+  .edit-link:hover, .delete-link:hover, .add-review-link:hover{
+    color: #000;
+    text-decoration: none;
+  }
+  
+
+/* Footer Styles */
+footer {
+    background-color: #000000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}

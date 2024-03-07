@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <script src="https://kit.fontawesome.com/be6ede46a1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" ></script>
+    <title>MovieMingle</title>
+    
+</head>
+<body>
+    <header>
+        <h1>MovieMingle</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'movieapp:movie-list' %}">Home</a></li>
+                <!-- <nav class="navbar navbar-expand-lg navbar-light "> -->
+                    <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                        <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          Category
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-light">
+                          <!-- <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                          {% for cat in links %}
+                            <a class="dropdown-item" href="{% url 'movieapp:category-movie-list' category_slug=cat.slug %}">{{ cat.name }}</a>
+                        {% endfor %}
+                          
+                        </ul>
+                      </li>
+                    </ul>
+                  
+            
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'movieapp:add_movie' %}">Add Movie</a></li>
+                <li><a href="{% url 'movieapp:profile' %}">Profile</a></li>
+                <li><a href="{% url 'movieapp:logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'movieapp:login' %}">Login</a></li>
+                <li><a href="{% url 'movieapp:register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+        <form class="d-flex" method="get" action="{% url 'searchapp:SearchResult' %}">
+            {% csrf_token %}
+              <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
+            <button class="btn btn-outline-orange my-2 my-sm-0" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #ff3300;"></i></button>
+        <!--      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        
+          </form>
+    </nav>
+    
+
+    <div id="content">
+        {% block content %}
+        <h2>Welcome to MovieMingle!</h2>
+        <p>Explore a world of movies and reviews. Find your favorite movies and share your thoughts with the community.</p>
+        <h2>Movie List</h2>
+
+  {% for movie in movies %}
+    <div>
+      <h3><a href="{% url 'movieapp:movie_detail' movie.id %}">{{ movie.title }}</a></h3>
+      <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" width="150" height="100">
+      <p>{{ movie.description }}</p>
+    </div>
+  {% endfor %}
+  <br>
+  <br>
+        {% endblock %}
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Your Movie App. All rights reserved.</p>
+          </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>{{ category.name }} Movies</h2>
+
+    <div class="row">
+      {% for movie in movies %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{{ movie.poster.url }}" class="card-img-top" alt="{{ movie.title }}" style="height: 300px; width: 100%;">
+            <div class="card-body">
+              <h5 class="card-title"><a href="{% url 'movieapp:movie_detail' movie.id %}">{{ movie.title }}</a></h5>
+              <p class="card-text">{{ movie.description }}</p>
+              <a href="{% url 'movieapp:movie_detail' movie.id %}" class="btn btn-primary">More Details</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+
+{% endblock %}
